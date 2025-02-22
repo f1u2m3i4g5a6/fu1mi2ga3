@@ -38,6 +38,7 @@ body {
   background-position: center; /* Centraliza a imagem */
   background-attachment: fixed; /* Imagem fixa durante rolagem */
   height: 100vh; /* Garante que a imagem ocupe toda a altura da tela */
+  cursor: url('cursor1.gif'), auto; /* Cursor inicial */
 }
 
     /* Personalizações para o navbar */
@@ -272,6 +273,24 @@ body {
     color: #fff; /* Cor Branca */
   }
   </style>
+
+  <!-- Alterar Cursor do Mouse -->
+
+<script>
+    let cursorAtual = 'cursor1.gif'; // Inicializando o cursor como cursor1.gif
+
+    function mudarCursor() {
+        if (cursorAtual === 'cursor1.gif') {
+            document.body.style.cursor = 'url(cursor2.gif), auto'; // Muda para cursor2.gif
+            cursorAtual = 'cursor2.gif'; // Atualiza o cursor atual
+        }
+    }
+
+    window.onload = () => {
+        // Quando o mouse se mover, troca para cursor2.gif
+        document.body.addEventListener('mousemove', mudarCursor);
+    };
+</script>
   
   <!-- Bootstrap Bundle com Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -414,7 +433,7 @@ body {
 <!-- Navbar responsiva com Bootstrap --> 
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="criador">
       <img src="favicon.gif" alt="Fumiga" style="height: 40px;">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
@@ -424,22 +443,19 @@ body {
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
         <li class="nav-item">
-          <a class="nav-link" href="arena" target="_blank" onclick="handleNavClick('arena')">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="menu" target="_blank" onclick="handleNavClick('menu')">Menu</a>
+          <a class="nav-link" href="fumiga" target="_blank" onclick="handleNavClick('fumiga')">Início</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="sobre" target="_blank" onclick="handleNavClick('sobre')">Sobre</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="midia" target="_blank" onclick="handleNavClick('midia')">Mídia</a>
+          <a class="nav-link" href="https://tawk.to/fumiga" target="_blank" onclick="handleNavClick('https://tawk.to/fumiga')">Suporte</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="suporte" target="_blank" onclick="handleNavClick('suporte')">Suporte</a>
+          <a class="nav-link" href="discord" target="_blank" onclick="handleNavClick('discord')">Discord</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn-entrar" href="entrar" target="_blank" onclick="handleNavClick('entrar')">Entrar</a>
+          <a class="nav-link btn-entrar" href="login" target="_blank" onclick="handleNavClick('login')">Logar</a>
         </li>
         <!-- Toggle de tema -->
         <li class="nav-item d-flex align-items-center">
@@ -458,25 +474,194 @@ body {
 
 <!-- Conteúdo da página -->
 <div class="container mt-5 text-center">
-  <h1 class="mb-4 text-red" style="font-family: 'Sofadi One', serif; text-align: center; text-transform: uppercase; letter-spacing: 2px; font-size: 2rem; color: #fff; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);">
+  <h1 class="mb-4" style="font-family: 'Sofadi One', serif; text-transform: uppercase; letter-spacing: 2px; font-size: 2rem; color: #fff; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);">
     Fumiga
   </h1>
 
-  <p class="mb-5 text-red" style="font-size: 1.1rem; color: #fff; font-weight: 400; text-align: center; line-height: 1.8; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); max-width: 70%; margin: 20px auto; background: linear-gradient(135deg, #FFC0CB, #ff66b2); padding: 15px 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);">
-  Bem-vindo ao universo da Fumiga, onde a criatividade e o código se encontram!
+  <p style="font-size: 1.1rem; color: #fff; font-weight: 400; line-height: 1.8; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); max-width: 70%; margin: 20px auto;">
+    <img src="menu.gif" alt="" class="favicon-loader" style="width: 50px; height: 50px;">
   </p>
 
-  <div class="button-container">
-    <a href="sobre" class="custom-button">
-      <img src="sobre.png" alt="Sobre" class="button-icon">
-      <span class="button-text">Sobre</span>
-    </a>
-    <a href="entrar" class="custom-button">
-      <img src="discord.png" alt="Discord" class="button-icon">
-      <span class="button-text">Discord</span>
-    </a>
+  <div class="loader" style="display: flex; justify-content: center; gap: 5px; margin-top: 10px;">
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
   </div>
 </div>
+
+<!-- Barra de pesquisa -->
+<div class="search-container">
+  <input type="text" class="search-bar" placeholder="Pesquisar..." id="searchInput" onkeyup="searchSuggestions()">
+  <img src="barra_pesquisa.png" alt="Buscar" class="search-icon">
+  <div id="suggestions" class="suggestions-list"></div>
+</div>
+
+<!-- Lista de categorias -->
+<div class="list-container">
+  <a href="filmes.html" class="list-item">
+    <img src="filmes_lista.png" alt="Filmes" class="list-icon">
+    <span>Filmes</span>
+  </a>
+  <a href="series.html" class="list-item">
+    <img src="series_lista.png" alt="Séries" class="list-icon">
+    <span>Séries</span>
+  </a>
+  <a href="aplicativos.html" class="list-item">
+    <img src="aplicativos_lista.png" alt="Aplicativos" class="list-icon">
+    <span>Aplicativos</span>
+  </a>
+  <a href="livros.html" class="list-item">
+    <img src="livros_lista.png" alt="Livros" class="list-icon">
+    <span>Livros</span>
+  </a>
+</div>
+
+<!-- Botões adicionais -->
+<div class="button-container">
+  <a href="sobre" class="custom-button">
+    <img src="sobre.png" alt="Sobre" class="button-icon">
+    <span class="button-text">Sobre</span>
+  </a>
+  <a href="entrar" class="custom-button">
+    <img src="discord.png" alt="Discord" class="button-icon">
+    <span class="button-text">Discord</span>
+  </a>
+</div>
+
+<style>
+  body {
+    background-color: #ff69b4;
+    font-family: Arial, sans-serif;
+  }
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    position: relative;
+  }
+  .search-bar {
+    width: 50%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+  }
+  .search-icon {
+    width: 30px;
+    margin-left: 10px;
+  }
+  .suggestions-list {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+  }
+  .suggestions-list a {
+    display: block;
+    padding: 10px;
+    color: #ff69b4;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+  .suggestions-list a:hover {
+    background-color: #ff1493;
+    color: white;
+  }
+  .list-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .list-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #ff69b4;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+  .list-item:hover {
+    background: #ff1493;
+    color: white;
+  }
+  .list-icon {
+    width: 30px;
+    margin-right: 10px;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .custom-button {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #ff69b4;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+  .custom-button:hover {
+    background: #ff1493;
+    color: white;
+  }
+  .button-icon {
+    width: 30px;
+    margin-right: 10px;
+  }
+</style>
+
+<script>
+  const categories = [
+    "Filmes",
+    "Séries",
+    "Aplicativos",
+    "Livros"
+  ];
+
+  function normalizeString(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+
+  function searchSuggestions() {
+    const input = normalizeString(document.getElementById('searchInput').value);
+    const suggestionsDiv = document.getElementById('suggestions');
+    suggestionsDiv.innerHTML = '';
+
+    if (input) {
+      const filteredSuggestions = categories.filter(item => normalizeString(item).includes(input));
+      filteredSuggestions.forEach(suggestion => {
+        const suggestionItem = document.createElement('a');
+        suggestionItem.href = suggestion.toLowerCase() + '.html';
+        suggestionItem.textContent = suggestion;
+        suggestionsDiv.appendChild(suggestionItem);
+      });
+      suggestionsDiv.style.display = filteredSuggestions.length ? 'block' : 'none';
+    } else {
+      suggestionsDiv.style.display = 'none';
+    }
+  }
+</script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap');
